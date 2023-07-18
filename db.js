@@ -19,9 +19,13 @@ app.post('/api/chat', async (req, res) => {
     const { message } = req.body;
 
     // Запрос к API ChatGPT
-    const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
-      prompt: message,
-      max_tokens: 500,
+    const response = await axios.post('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+        prompt:message,
+        max_tokens: 500,
+        temperature: 0.7,
+        top_p: 1.0,
+        n: 1,
+        stop: null,
     }, {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
