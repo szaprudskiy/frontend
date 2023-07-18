@@ -24,7 +24,7 @@
         "dest": "db.js"
       },
       {
-        "src": "/api/сhat",
+        "src": "/api/chat",
         "dest": "db.js"
       }
     ]
