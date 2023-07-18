@@ -13,7 +13,7 @@ const uri = process.env.MONGODB_URI;
 
 
 
-app.post('/api/chat', async (req, res) => {
+app.get('/api/chat', async (req, res) => {
   try {
     const apiKey = process.env.CHATGPT_API_KEY; // Переменная окружения с API-ключом ChatGPT
     const { message } = req.body;
