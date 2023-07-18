@@ -1,5 +1,5 @@
 export function getCommentsCount() {
-    return fetch('http://localhost:3000/api/comments/count')
+    return fetch('https://frontend-pink-theta.vercel.app/api/comments/count')
     .then(response => response.json())
     .then(data => data.count)
     .catch(error => {
