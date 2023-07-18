@@ -1,39 +1,18 @@
-export default async function generateCommentReplyAPI(commentText) {
-    const prompt = `Комментарий: ${commentText}\nОтвет:`;
-    
-    const openaiAPIKey = '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';
-  
-    const apiUrl = 'https://api.openai.com/v1/chat/completions'; 
-  
-    const requestBody = {
-        model: 'gpt-3.5-turbo',
-        prompt:prompt,
-        max_tokens: 500,
-        temperature: 0.7,
-        top_p: 1.0,
-        n: 1,
-        stop: null,
-    };
-  
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${openaiAPIKey}`,
-      },
-      body: JSON.stringify(requestBody),
-    };
-  
+export default async function generateCommentReplyAPI(message) {
     try {
-      const response = await fetch(apiUrl, requestOptions);
+      const apiUrl = 'https://fb-comments.vercel.app/api/chat'; // Замените на URL вашей серверной функции
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+
       const data = await response.json();
-      console.log(data)
-      // Получаем сгенерированный ответ от OpenAI
-      const generatedText = data.choices[0].text.trim();
-  
-      return generatedText;
+      return data.reply;
     } catch (error) {
-      console.error('Ошибка при генерации ответа:', error);
+      console.error('Ошибка при запросе к серверу:', error);
       throw error;
     }
   }
