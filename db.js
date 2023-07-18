@@ -1,11 +1,14 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 var cors = require('cors');
+require('dotenv').config()
+
+const PORT = process.env.PORT || 3000
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-const uri = 'mongodb+srv://commentsfb:yI1bCB1LuGAcT8AZ@cluster0.vluc0bi.mongodb.net/?retryWrites=true&w=majority'; 
+const uri = process.env.MONGODB_URI;
 
 
 app.get('/api/comments', async (req, res) => {
@@ -97,6 +100,6 @@ app.post('/api/check-comment-replied', async (req, res) => {
   }
 });
 
-app.listen(443, () => {
-  console.log('Сервер запущен на порту 3000');
+app.listen(PORT, () => {
+  console.log('Сервер запущен на порту ${PORT}');
 });
