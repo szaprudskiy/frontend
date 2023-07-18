@@ -1,0 +1,27 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "db.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/comments",
+        "dest": "db.js"
+      },
+      {
+        "src": "/api/comments/count",
+        "dest": "db.js"
+      },
+      {
+        "src": "/api/comments/pending-count",
+        "dest": "db.js"
+      },
+      {
+        "src": "/api/check-comment-replied",
+        "dest": "db.js"
+      }
+    ]
+  }

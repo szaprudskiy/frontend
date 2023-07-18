@@ -101,5 +101,5 @@ app.post('/api/check-comment-replied', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('Сервер запущен на порту ${PORT}');
+  console.log(`Сервер запущен на порту ${PORT}`);
 });
