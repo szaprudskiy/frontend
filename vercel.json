@@ -23,5 +23,9 @@
         "src": "/api/check-comment-replied",
         "dest": "db.js"
       }
+      {
+        "src": "/api/сhat",
+        "dest": "db.js"
+      }
     ]
   }
