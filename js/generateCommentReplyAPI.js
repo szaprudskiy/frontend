@@ -1,11 +1,12 @@
 export default async function generateCommentReplyAPI(commentText) {
     const prompt = `Комментарий: ${commentText}\nОтвет:`;
     
-    const openaiAPIKey = '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';
+    const openaiAPIKey = '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';
   
-    const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-003/completions'; 
+    const apiUrl = 'https://api.openai.com/v1/chat/completions'; 
   
     const requestBody = {
+        model: 'gpt-3.5-turbo',
         prompt:prompt,
         max_tokens: 500,
         temperature: 0.7,
