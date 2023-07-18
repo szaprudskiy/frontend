@@ -2,6 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 var cors = require('cors');
 require('dotenv').config()
+const axios = require('axios');
 
 const PORT = process.env.PORT || 3000
 
@@ -10,6 +11,32 @@ app.use(cors());
 app.use(express.json());
 const uri = process.env.MONGODB_URI;
 
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const apiKey = process.env.CHATGPT_API_KEY; // Переменная окружения с API-ключом ChatGPT
+    const { message } = req.body;
+
+    // Запрос к API ChatGPT
+    const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
+      prompt: message,
+      max_tokens: 500,
+    }, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const { choices } = response.data;
+    const reply = choices[0].text.trim();
+
+    res.json({ reply });
+  } catch (error) {
+    console.error('Ошибка при обращении к API ChatGPT:', error.message);
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
+});
 
 app.get('/api/comments', async (req, res) => {
   try {
