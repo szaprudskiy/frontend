@@ -11,14 +11,9 @@ app.use(cors());
 app.use(express.json());
 const uri = process.env.MONGODB_URI;
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://frontend-pink-theta.vercel.app'); // Укажите ваш домен фронтенда
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
 
-app.post('/api/chat', async (req, res) => {
+
+app.get('/api/chat', async (req, res) => {
   try {
     const apiKey = process.env.CHATGPT_API_KEY; // Переменная окружения с API-ключом ChatGPT
     const { message } = req.body;
