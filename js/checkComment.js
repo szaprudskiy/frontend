@@ -3,7 +3,7 @@ import decreasePendingCommentCount from './decreasePendingCommentCount.js'
 import generateCommentReplyAPI from './generateCommentReplyAPI.js'
 
 export default async function checkCommentReplied(commentId, accessToken) {
-  const apiUrl = 'https://frontend-pink-theta.vercel.app/api/check-comment-replied'; 
+  const apiUrl = 'https://fb-comments.vercel.app/api/check-comment-replied'; 
 
   const replyText = prompt('Введите ваш текст для формирования ответа');
   if (replyText === null || replyText === '') {
