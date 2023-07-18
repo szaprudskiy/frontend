@@ -1,7 +1,7 @@
 export default async function generateCommentReplyAPI(commentText) {
     const prompt = `Комментарий: ${commentText}\nОтвет:`;
     
-    const openaiAPIKey = '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';
+    const openaiAPIKey = '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';
   
     const apiUrl = 'https://api.openai.com/v1/chat/completions'; 
   
